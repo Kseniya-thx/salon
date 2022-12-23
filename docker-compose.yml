@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db_service:
+    container_name: salon_mysql
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - salon_net
+    ports:
+      - "3306:3306"
+  php:
+    networks:
+      - salon_net
+    image: yiisoftware/yii2-php:8.1-apache
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/app:delegated
+    ports:
+      - '8000:80'
+
+networks:
+  salon_net:
+    driver: bridge
