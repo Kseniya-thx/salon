@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS salon_db;
-CREATE TABLE clients
+USE salon_db;
+CREATE TABLE IF NOT EXISTS clients
 (
     id_client   INT AUTO_INCREMENT PRIMARY KEY,
     fio         VARCHAR(255) NOT NULL,
@@ -8,15 +9,20 @@ CREATE TABLE clients
     address     VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE contacts
+CREATE TABLE IF NOT EXISTS contacts
 (
     id_client INT AUTO_INCREMENT PRIMARY KEY,
     e_mail    VARCHAR(100) NOT NULL,
     telegram  VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS group_services
+(
+    id_group_services INT AUTO_INCREMENT PRIMARY KEY,
+    name_of_services  VARCHAR(100) NOT NULL
+);
 
-CREATE TABLE positions
+CREATE TABLE IF NOT EXISTS positions
 (
     id_positions      INT AUTO_INCREMENT PRIMARY KEY,
     name_of_job_title VARCHAR(255) NOT NULL,
@@ -27,7 +33,7 @@ CREATE TABLE positions
         FOREIGN KEY (services_group) REFERENCES group_services (id_group_services)
 );
 
-CREATE TABLE employee
+CREATE TABLE IF NOT EXISTS employee
 (
     id_employee int auto_increment primary key,
     surname     varchar(255) not null,
@@ -42,14 +48,7 @@ CREATE TABLE employee
 
 
 
-CREATE TABLE group_services
-(
-    id_group_services INT AUTO_INCREMENT PRIMARY KEY,
-    name_of_services  VARCHAR(100) NOT NULL
-);
-
-
-CREATE TABLE services
+CREATE TABLE IF NOT EXISTS services
 (
     id_services     INT AUTO_INCREMENT PRIMARY KEY,
     name_of_service VARCHAR(120) NOT NULL,
@@ -64,7 +63,7 @@ CREATE TABLE services
 
 );
 
-CREATE TABLE visits
+CREATE TABLE IF NOT EXISTS visits
 (
     id_visitor       INT AUTO_INCREMENT PRIMARY KEY,
     id_client        INT         NOT NULL,
@@ -80,3 +79,5 @@ CREATE TABLE visits
     CONSTRAINT visit_employee_id_employee_fk
         FOREIGN KEY (id_employee) REFERENCES employee (id_employee)
 );
+
+
