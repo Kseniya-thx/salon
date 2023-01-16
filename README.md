@@ -10,7 +10,8 @@ docker-compose up -d
 php composer.phar install
 php yii serve
 ````
-Схема БД - [SQL](dump.sql)
+Схема БД - [dump.sql](dump.sql)
+Конфиг БД - [config/db.php](config/db.php)
 
 DIRECTORY STRUCTURE
 -------------------
